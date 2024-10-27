@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Portfolio Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Background with smooth color shifting for depth */
+    body {
+      background: linear-gradient(120deg, #4A90E2, #F2AC8D, #E1F0E8);
+      background-size: 200% 200%;
+      animation: gradientShift 12s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Dark mode */
+    .dark-mode {
+      background: #121212;
+      color: #E5E7EB;
+    }
+
+    /* Animated greeting */
+    .greeting {
+      animation: fadeIn 2s ease forwards, slideIn 1.5s ease-out;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-20px); }
+      to { transform: translateY(0); }
+    }
+
+    /* Button hover glow effect */
+    .button-glow:hover {
+      box-shadow: 0 4px 20px rgba(66, 153, 225, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Social icon bounce effect */
+    .social-icon:hover {
+      transform: scale(1.15) translateY(-4px);
+      transition: transform 0.2s ease;
+    }
+
+    /* Divider with shadow */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #bbb, transparent);
+      margin: 20px 0;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Animated skill bars */
+    .skill-bar {
+      width: 0;
+      transition: width 2s ease;
+    }
+    .skill-bar-wrapper:hover .skill-bar {
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 transition-all">
+
+  <!-- Loader -->
+  <div id="loader" class="fixed inset-0 flex items-center justify-center bg-white z-50">
+    <div class="loader-circle border-t-4 border-blue-500 border-solid w-12 h-12 rounded-full animate-spin"></div>
+  </div>
+
+  <!-- Content -->
+  <div id="content" class="w-full max-w-md bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6 text-gray-800 border border-gray-200 relative transition-all fade-in" style="display: none;">
+    
+    <!-- Navbar with Dark Mode Toggle -->
+    <nav class="flex justify-between items-center mb-4 text-gray-700">
+      <h2 class="text-lg font-bold">Welcome</h2>
+      <div id="darkModeToggle" class="toggle-btn cursor-pointer"></div>
+    </nav>
+
+    <!-- Animated Greeting -->
+    <div class="text-center greeting">
+      <h1 class="text-lg font-semibold text-gray-900 dark:text-white">👋 Hello! I'm [Your Name]</h1>
+      <p class="text-gray-600 dark:text-gray-300">Computer Science Student | Developer</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Skills Section -->
+    <div class="text-center mt-6">
+      <h3 class="text-md font-semibold text-gray-700 dark:text-gray-200">Skills</h3>
+      <div class="space-y-2 mt-3">
+        <div class="skill-bar-wrapper bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div class="skill-bar bg-blue-500 h-2"></div>
+        </div>
+        <div class="skill-bar-wrapper bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div class="skill-bar bg-green-500 h-2"></div>
+        </div>
+        <div class="skill-bar-wrapper bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div class="skill-bar bg-purple-500 h-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Links Section -->
+    <div class="space-y-3">
+      <a href="#resume" class="button-glow block bg-gray-100 hover:bg-gray-200 transition transform py-3 rounded-lg text-center shadow-sm font-medium text-gray-700 text-sm dark:bg-gray-700 dark:hover:bg-gray-600">
+        <span class="mr-2">📄</span> Resume
+      </a>
+      <a href="#projects" class="button-glow block bg-gray-100 hover:bg-gray-200 transition transform py-3 rounded-lg text-center shadow-sm font-medium text-gray-700 text-sm dark:bg-gray-700 dark:hover:bg-gray-600">
+        <span class="mr-2">🖥️</span> Projects
+      </a>
+      <a href="#contact" class="button-glow block bg-gray-100 hover:bg-gray-200 transition transform py-3 rounded-lg text-center shadow-sm font-medium text-gray-700 text-sm dark:bg-gray-700 dark:hover:bg-gray-600">
+        <span class="mr-2">📧</span> Contact Me
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Social Icons -->
+    <div class="flex justify-around mt-4">
+      <a href="#linkedin" class="social-icon text-blue-500 text-xl"><i class="fab fa-linkedin"></i></a>
+      <a href="#github" class="social-icon text-gray-700 text-xl"><i class="fab fa-github"></i></a>
+      <a href="#twitter" class="social-icon text-blue-400 text-xl"><i class="fab fa-twitter"></i></a>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-6 text-center text-gray-400 text-xs dark:text-gray-500">
+      <p>© 2024 [Your Name]. All Rights Reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    // Dark mode toggle
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // Show content after loading
+    window.addEventListener("load", () => {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    });
+  </script>
+</body>
+</html>
