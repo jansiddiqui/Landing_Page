@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Digital Profile Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for 3D button and icon effect */
+    .btn-3d {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-3d:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+    }
+    .icon-3d {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .icon-3d:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center">
+
+  <!-- Header -->
+  <header class="text-center mb-12">
+    <h1 class="text-4xl font-bold mb-2">Welcome to My Digital Profile</h1>
+    <p class="text-lg text-gray-400">Discover my work, achievements, and social connections</p>
+  </header>
+
+  <!-- Profile Links Vertical List -->
+  <div class="space-y-4 w-full max-w-md px-4">
+    <!-- Profile Link Buttons with Icons -->
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="Resume">
+      <img src="resume-icon.png" alt="Resume" class="icon-3d w-6 h-6 mr-3"> Resume
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="Portfolio">
+      <img src="portfolio-icon.png" alt="Portfolio" class="icon-3d w-6 h-6 mr-3"> Portfolio
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="GitHub">
+      <img src="github-icon.png" alt="GitHub" class="icon-3d w-6 h-6 mr-3"> GitHub
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="LinkedIn">
+      <img src="linkedin-icon.png" alt="LinkedIn" class="icon-3d w-6 h-6 mr-3"> LinkedIn
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="Google Cloud Skill Boost">
+      <img src="google-cloud-icon.png" alt="Google Cloud Skill Boost" class="icon-3d w-6 h-6 mr-3"> Google Cloud Skill Boost
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="Microsoft Learn">
+      <img src="microsoft-learn-icon.png" alt="Microsoft Learn" class="icon-3d w-6 h-6 mr-3"> Microsoft Learn
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="Leetcode">
+      <img src="leetcode-icon.png" alt="Leetcode" class="icon-3d w-6 h-6 mr-3"> Leetcode
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="GeeksforGeeks">
+      <img src="geeksforgeeks-icon.png" alt="GeeksforGeeks" class="icon-3d w-6 h-6 mr-3"> GeeksforGeeks
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="HackerRank">
+      <img src="hackerrank-icon.png" alt="HackerRank" class="icon-3d w-6 h-6 mr-3"> HackerRank
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="HackerEarth">
+      <img src="hackerearth-icon.png" alt="HackerEarth" class="icon-3d w-6 h-6 mr-3"> HackerEarth
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="Twitter">
+      <img src="twitter-icon.png" alt="Twitter" class="icon-3d w-6 h-6 mr-3"> Twitter
+    </button>
+    <button class="btn-3d flex items-center bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="Instagram">
+      <img src="instagram-icon.png" alt="Instagram" class="icon-3d w-6 h-6 mr-3"> Instagram
+    </button>
+    <button class="btn-3d flex items-center justify-start bg-gray-800 text-white font-semibold py-3 px-5 rounded-lg w-full" data-profile="YouTube">
+        <img src="youtube-icon.png" alt="YouTube" class="icon-3d w-6 h-6 mr-3"> 
+        <span>YouTube</span>
+    </button>      
+  </div>
+
+  <!-- Authentication Modal -->
+  <div id="authModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+    <div class="bg-white rounded-lg p-6 text-center shadow-2xl max-w-md mx-auto">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900">Are you human?</h2>
+      <p class="text-gray-700 mb-6">Please confirm to proceed.</p>
+      <div>
+        <button id="confirmYes" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded mr-3">Yes</button>
+        <button id="confirmNo" class="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-2 rounded">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-12 text-center text-gray-500">
+    <p>&copy; 2024 [Your Name]. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript for Modal Functionality -->
+  <script>
+    const profileButtons = document.querySelectorAll('.btn-3d');
+    const authModal = document.getElementById('authModal');
+    const confirmYes = document.getElementById('confirmYes');
+    const confirmNo = document.getElementById('confirmNo');
+    let selectedLink = null;
+
+    profileButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        selectedLink = button.getAttribute('data-profile');
+        authModal.classList.remove('hidden');
+      });
+    });
+
+    confirmYes.addEventListener('click', () => {
+      authModal.classList.add('hidden');
+      if (selectedLink) {
+        alert(`Redirecting to ${selectedLink}`);
+        selectedLink = null; // Reset link after use
+      }
+    });
+
+    confirmNo.addEventListener('click', () => {
+      alert('You are not authorized to visit this page.');
+      authModal.classList.add('hidden');
+      selectedLink = null;
+    });
+  </script>
+
+</body>
+</html>

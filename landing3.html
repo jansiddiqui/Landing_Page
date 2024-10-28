@@ -18,10 +18,13 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Dark mode */
+    /* Dark mode styling */
     .dark-mode {
-      background: #121212;
+      background: #1F2937;
       color: #E5E7EB;
+    }
+    .dark-mode .bg-gray-100 {
+      background: #4B5563;
     }
 
     /* Animated greeting */
@@ -64,6 +67,34 @@
     }
     .skill-bar-wrapper:hover .skill-bar {
       width: 100%;
+    }
+    
+    /* Dark mode toggle switch */
+    .toggle-btn {
+      width: 34px;
+      height: 20px;
+      background: #4B5563;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .toggle-btn::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #FFF;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s;
+    }
+    .toggle-btn.active {
+      background: #10B981;
+    }
+    .toggle-btn.active::before {
+      transform: translateX(14px);
     }
   </style>
 </head>
@@ -139,11 +170,13 @@
 
   <script>
     // Dark mode toggle
-    document.getElementById('darkModeToggle').addEventListener('click', () => {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
+      darkModeToggle.classList.toggle('active');
     });
 
-    // Show content after loading
+    // Loading animation control
     window.addEventListener("load", () => {
       document.getElementById("loader").style.display = "none";
       document.getElementById("content").style.display = "block";
